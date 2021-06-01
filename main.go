@@ -9,12 +9,17 @@ func home(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello from Snippetbox"))
 }
 
+func showSnippet(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a specific snippet..."))
+}
+
 func main() {
 	// Use the http.NewServeMux() function to initialize a new servemux, then
 	// register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
-
+	mux.HandleFunc("/snippet", showSnippet)
+	
 	// Starts a new web server on port 4000. If http.ListenAndServe() returns an error,
 	// log error message and exit
 	log.Println("Starting server on :4000")
